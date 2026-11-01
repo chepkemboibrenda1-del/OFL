@@ -9,16 +9,16 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "FXFlow",
-    template: "%s | FXFlow",
+    default: "OPTIONIC",
+    template: "%s | OPTIONIC",
   },
   description: "Forex trading platform",
-  applicationName: "FXFlow",
+  applicationName: "OPTIONIC",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "FXFlow",
+    title: "OPTIONIC",
   },
 }
 
