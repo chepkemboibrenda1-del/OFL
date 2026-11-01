@@ -21,7 +21,7 @@ export const SIDEBAR_WIDTH = 240
 export const SIDEBAR_COLLAPSED_WIDTH = 64
 
 // Sidebar cookie
-export const SIDEBAR_COOKIE_NAME = "fxflow-sidebar-state"
+export const SIDEBAR_COOKIE_NAME = "optionic-sidebar-state"
 export const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 // 1 year
 
 // Navigation
