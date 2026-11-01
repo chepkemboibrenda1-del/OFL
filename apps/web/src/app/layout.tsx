@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     default: "OPTIONIC",
     template: "%s | OPTIONIC",
   },
-  description: "Forex trading platform",
+  description: "OPTIONIC — Worldwide Trading",
   applicationName: "OPTIONIC",
   manifest: "/manifest.json",
   appleWebApp: {
