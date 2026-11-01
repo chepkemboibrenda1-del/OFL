@@ -7,7 +7,6 @@ Designed for personal trading, research, and educational use.
 
 [![CI](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/ci.yml/badge.svg)](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/ci.yml)
 [![Security](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/security.yml/badge.svg)](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/security.yml)
-[![Security](https://github.com/bmarshall511/forexflow/actions/workflows/security.yml/badge.svg)](https://github.com/bmarshall511/forexflow/actions/workflows/security.yml)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22-green.svg)](https://nodejs.org/)
@@ -478,5 +477,4 @@ OPTIONIC encrypts all stored credentials using AES-256-GCM. API tokens are never
 This project is licensed under the [GNU Affero General Public License v3.0](LICENSE).
 
 ---
-
-OPTIONIC is based on the original ForexFlow project by its upstream author. See the original source at https://github.com/bmarshall511/forexflow.(https://github.com/bmarshall511/forexflow).
+OPTIONIC is based on the original ForexFlow project by its upstream author. See the original source at https://github.com/bmarshall511/forexflow.
