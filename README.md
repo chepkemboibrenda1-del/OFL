@@ -98,7 +98,7 @@ A [Model Context Protocol](https://modelcontextprotocol.io/) server that exposes
 
 ## Architecture
 
-ForexFlow is a TypeScript monorepo with 5 apps and 3 shared packages:
+OPTIONIC is built on a TypeScript monorepo with 5 apps and 3 shared packages:
 
 ```
 apps/
