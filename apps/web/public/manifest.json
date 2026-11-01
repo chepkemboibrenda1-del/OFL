@@ -1,8 +1,8 @@
 {
-  "name": "FXFlow",
-  "short_name": "FXFlow",
+  "name": "OPTIONIC — Worldwide Trading",
+  "short_name": "OPTIONIC",
   "version": "0.1.0",
-  "description": "Forex Trading Platform",
+  "description": "OPTIONIC — Worldwide Trading. A self-hosted forex trading dashboard.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#09090b",
