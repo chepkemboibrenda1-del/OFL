@@ -5,7 +5,8 @@ OPTIONIC is a self-hosted forex trading dashboard built with AI-assisted analysi
 
 Designed for personal trading, research, and educational use.
 
-[![CI](https://github.com/bmarshall511/forexflow/actions/workflows/ci.yml/badge.svg)](https://github.com/bmarshall511/forexflow/actions/workflows/ci.yml)
+[![CI](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/ci.yml/badge.svg)](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/ci.yml)
+[![Security](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/security.yml/badge.svg)](https://github.com/chepkemboibrenda1-del/OFL/actions/workflows/security.yml)
 [![Security](https://github.com/bmarshall511/forexflow/actions/workflows/security.yml/badge.svg)](https://github.com/bmarshall511/forexflow/actions/workflows/security.yml)
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
@@ -159,8 +160,8 @@ The daemon is the central hub — it maintains persistent streaming connections 
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/bmarshall511/forexflow.git
-cd forexflow
+git clone https://github.com/chepkemboibrenda1-del/OFL.git
+cd OFL
 pnpm install
 ```
 
@@ -249,9 +250,9 @@ AI features require an Anthropic API key. Configure at **Settings > AI** (per-tr
 
 The AI Trader can optionally use FRED and Alpha Vantage API keys for macroeconomic data context — configure them in **Settings > AI Trader > API Keys**.
 
-### Remote Access (optional)
+## Remote Access (optional)
 
-Access FXFlow from your phone or any device — zero configuration needed:
+Access OPTIONIC from your phone or any device — zero configuration needed:
 
 ```bash
 pnpm dev    # Starts app + Cloudflare Quick Tunnel automatically
@@ -271,9 +272,9 @@ Use `pnpm dev:local` to skip the tunnel and run locally only.
 
 For a persistent URL, set up a [named tunnel](docs/ai/remote-access.md#named-tunnels-advanced).
 
-### PWA Support
+## PWA Support
 
-FXFlow is installable as a Progressive Web App on mobile devices:
+OPTIONIC is installable as a Progressive Web App on mobile devices:
 
 1. Open the app in your mobile browser
 2. Tap "Add to Home Screen" (iOS Safari) or install prompt (Android Chrome)
@@ -281,14 +282,14 @@ FXFlow is installable as a Progressive Web App on mobile devices:
 
 Features: offline fallback page, app icons, standalone display mode, theme-color integration.
 
-### Desktop App (macOS)
+## Desktop App (macOS)
 
-For non-technical users who want to install FXFlow like a regular app — no terminal, no Node.js required:
+For non-technical users who want to install OPTIONIC like a regular app — no terminal, no Node.js required:
 
 1. Download the latest `.dmg` from [GitHub Releases](https://github.com/bmarshall511/forexflow/releases)
 2. Open the DMG and drag FXFlow to Applications
 3. **First launch**: if macOS shows "FXFlow is damaged", run `xattr -cr /Applications/FXFlow.app` in Terminal (required because the app is unsigned)
-4. FXFlow starts with the daemon running in the background and the web UI in the app window
+4. OPTIONIC starts with the daemon running in the background and the web UI in the app window
 5. Closing the window hides it to the system tray — the daemon keeps running
 6. Auto-updates check GitHub Releases every 4 hours
 
@@ -296,9 +297,9 @@ To build the DMG locally: `pnpm desktop:dist` (outputs to `apps/desktop/release/
 
 The desktop app supports both local and cloud deployment modes via **Settings > Deployment**.
 
-### Cloud Deployment (optional)
+## Cloud Deployment (optional)
 
-Run the daemon on a remote server so FXFlow stays online 24/7 without keeping your computer on:
+Run the daemon on a remote server so OPTIONIC stays online 24/7 without keeping your computer on:
 
 1. **Deploy the daemon** to Railway or Fly.io using the included `apps/daemons/Dockerfile`
 2. **Create a Turso database** at [turso.tech](https://turso.tech) (free tier available)
@@ -468,7 +469,7 @@ Areas especially welcoming contributions:
 
 For security concerns, see [SECURITY.md](.github/SECURITY.md).
 
-ForexFlow encrypts all stored credentials using AES-256-GCM. API tokens are never stored in plain text or source code. The `.claude/` sandbox prevents AI tooling from accessing secrets.
+OPTIONIC encrypts all stored credentials using AES-256-GCM. API tokens are never stored in plain text or source code. The .claude/ sandbox prevents AI tooling from accessing secrets.
 
 ---
 
@@ -478,4 +479,4 @@ This project is licensed under the [GNU Affero General Public License v3.0](LICE
 
 ---
 
-**ForexFlow** is open source at [github.com/bmarshall511/forexflow](https://github.com/bmarshall511/forexflow).
+OPTIONIC is based on the original ForexFlow project by its upstream author. See the original source at https://github.com/bmarshall511/forexflow.(https://github.com/bmarshall511/forexflow).
