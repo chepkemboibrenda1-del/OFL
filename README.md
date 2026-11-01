@@ -1,6 +1,9 @@
-# ForexFlow
+# OPTIONIC
+### Worldwide Trading
 
-**A self-hosted, real-time forex trading platform built with AI — as both development tool and runtime feature.**
+OPTIONIC is a self-hosted forex trading dashboard built with AI-assisted analysis, real-time market monitoring, trade management, and automation through supported broker integrations.
+
+Designed for personal trading, research, and educational use.
 
 [![CI](https://github.com/bmarshall511/forexflow/actions/workflows/ci.yml/badge.svg)](https://github.com/bmarshall511/forexflow/actions/workflows/ci.yml)
 [![Security](https://github.com/bmarshall511/forexflow/actions/workflows/security.yml/badge.svg)](https://github.com/bmarshall511/forexflow/actions/workflows/security.yml)
@@ -9,13 +12,13 @@
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D22-green.svg)](https://nodejs.org/)
 [![pnpm](https://img.shields.io/badge/pnpm-%3E%3D10-orange.svg)](https://pnpm.io/)
 
-> **Disclaimer:** ForexFlow is provided as-is for educational and personal use. It is **not financial advice**. Trading forex involves significant risk of loss. The authors are not responsible for any trading losses incurred through the use of this software. Use at your own risk. Always trade with money you can afford to lose.
+> **Disclaimer:** Optionic is provided as-is for educational and personal use. It is **not financial advice**. Trading forex involves significant risk of loss. The authors are not responsible for any trading losses incurred through the use of this software. Use at your own risk. Always trade with money you can afford to lose.
 
 ---
 
-## What is ForexFlow?
+## What is OPTIONIC?
 
-ForexFlow is a self-hosted forex trading platform that connects to your [OANDA](https://www.oanda.com/) broker account and gives you a real-time command center for managing positions, automating trades, and analyzing every decision with AI.
+OPTIONIC is a self-hosted forex trading dashboard that connects to your OANDA broker account
 
 It was built solo in ~3 weeks using [Claude Code](https://claude.ai/claude-code) as an AI pair programmer — and then Claude was integrated as a runtime feature for live trade analysis. ~58,000 lines of hand-written TypeScript across 400+ files.
 
