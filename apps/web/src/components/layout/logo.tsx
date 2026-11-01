@@ -24,7 +24,7 @@ export function Logo({ variant = "full", className }: LogoProps) {
     <span className={cn("inline-flex shrink-0 items-center", className)}>
       <Image
         src={light}
-        alt="OPTIONIONIC"
+        alt="OPTIONIC"
         width={width}
         height={height}
         priority
@@ -32,7 +32,7 @@ export function Logo({ variant = "full", className }: LogoProps) {
       />
       <Image
         src={dark}
-        alt="FXFlow"
+        alt="OPTIONIC"
         width={width}
         height={height}
         priority
