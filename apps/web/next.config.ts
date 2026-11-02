@@ -18,14 +18,10 @@ if (existsSync(legacyWebEnvPath)) {
     "apps/web/.env.local exists and is no longer supported. Run `pnpm setup:env` at the repo root to migrate your values into .env.local, then restart.",
   )
 }
-if (!existsSync(rootEnvPath)) {
-  throw new Error(
-    `No .env.local found at repo root (${rootEnvPath}). Create it (see README.md for the template), or run \`pnpm setup:env\` if you have legacy per-app env files to migrate.`,
-  )
+if (existsSync(rootEnvPath)) {
+  dotenv.config({ path: rootEnvPath })
 }
-dotenv.config({ path: rootEnvPath })
 dotenv.config({ path: resolve(repoRoot, ".env") })
-
 const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 })
