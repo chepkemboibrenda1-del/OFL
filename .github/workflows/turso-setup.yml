@@ -1,18 +1,16 @@
 yaml
-name: Fix Turso DB
+name: Turso DB Setup
 
 on:
   workflow_dispatch:
 
 jobs:
-  fix:
+  migrate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
@@ -20,29 +18,26 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Show migration count (should be 31)
+      - name: Install Prisma and LibSQL adapter (Prisma 7 fix)
+        run: npm install @prisma/adapter-libsql @libsql/client --save
+
+      - name: Check 31 migrations
         run: |
-          echo "Migrations found:"
-          ls -1 packages/db/prisma/migrations | wc -l
-          ls -1 packages/db/prisma/migrations
+          ls packages/db/prisma/migrations | wc -l
+          ls packages/db/prisma/migrations
 
-      - name: Verify migrations against schema
-        run: npx prisma migrate status --schema=packages/db/prisma/schema.prisma
+      - name: Deploy to Turso
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-
-      - name: Deploy all 31 migrations to Turso
-        run: npx prisma migrate deploy --schema=packages/db/prisma/schema.prisma
-        env:
-          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
-          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-
-      - name: Verify Settings table exists
+          DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
         run: |
-          echo "Tables in Turso:"
-          npx prisma db execute --schema=packages/db/prisma/schema.prisma --stdin <<< "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;"
+          npx prisma migrate deploy --schema=packages/db/prisma/schema.prisma --skip-generate
+          npx prisma generate --schema=packages/db/prisma/schema.prisma
+
+      - name: Verify Settings table
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-          
+          DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+        run: npx prisma db execute --schema=packages/db/prisma/schema.prisma --stdin <<< "SELECT name FROM sqlite_master WHERE type='table';"
