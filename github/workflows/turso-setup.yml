@@ -1,0 +1,38 @@
+yaml
+name: Turso DB Setup
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Count migrations - should be 31
+        run: ls packages/db/prisma/migrations | wc -l
+
+      - name: Deploy to Turso - creates Settings table
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+        run: |
+          pnpm --filter @fxflow/db db:generate
+          pnpm --filter @fxflow/db exec prisma migrate deploy --schema=packages/db/prisma/schema.prisma
+
+      - name: Verify tables
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+        run: pnpm --filter @fxflow/db exec prisma db execute --schema=packages/db/prisma/schema.prisma --stdin <<< "SELECT name FROM sqlite_master WHERE type='table';"
+        
