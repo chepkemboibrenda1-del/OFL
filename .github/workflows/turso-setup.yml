@@ -1,43 +1,23 @@
 yaml
 name: Turso DB Setup
-
 on:
   workflow_dispatch:
-
 jobs:
-  migrate:
+  setup:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Install Prisma and LibSQL adapter (Prisma 7 fix)
-        run: npm install @prisma/adapter-libsql @libsql/client --save
-
-      - name: Check 31 migrations
-        run: |
-          ls packages/db/prisma/migrations | wc -l
-          ls packages/db/prisma/migrations
-
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
       - name: Deploy to Turso
         env:
           TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
           DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
         run: |
-          npx prisma migrate deploy --schema=packages/db/prisma/schema.prisma --skip-generate
-          npx prisma generate --schema=packages/db/prisma/schema.prisma
-
-      - name: Verify Settings table
-        env:
-          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
-          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
-          DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
-        run: npx prisma db execute --schema=packages/db/prisma/schema.prisma --stdin <<< "SELECT name FROM sqlite_master WHERE type='table';"
+          pnpm --filter @fxflow/db db:generate
+          pnpm --filter @fxflow/db exec prisma migrate deploy --schema=packages/db/prisma/schema.prisma
