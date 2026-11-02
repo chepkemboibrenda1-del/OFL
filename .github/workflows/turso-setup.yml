@@ -1,0 +1,48 @@
+yaml
+name: Fix Turso DB
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Show migration count (should be 31)
+        run: |
+          echo "Migrations found:"
+          ls -1 packages/db/prisma/migrations | wc -l
+          ls -1 packages/db/prisma/migrations
+
+      - name: Verify migrations against schema
+        run: npx prisma migrate status --schema=packages/db/prisma/schema.prisma
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+
+      - name: Deploy all 31 migrations to Turso
+        run: npx prisma migrate deploy --schema=packages/db/prisma/schema.prisma
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+
+      - name: Verify Settings table exists
+        run: |
+          echo "Tables in Turso:"
+          npx prisma db execute --schema=packages/db/prisma/schema.prisma --stdin <<< "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;"
+        env:
+          TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+          TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+          
